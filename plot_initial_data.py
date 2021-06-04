@@ -22,5 +22,7 @@ def histogram_stack(df):
         axs[k, l].set_title(column)
         i += 1
         j += 1
+    figManager = plt.get_current_fig_manager()
+    figManager.window.showMaximized()
     fig.suptitle('Column histograms')
     plt.show()
