@@ -2,16 +2,20 @@
 >Final project for the Machine Learning (ITI8565) course at TalTech
 
 ## Index
-[Introduction](#intro)
-[Usage](#usage)
-[Reuirements](#requirements)
-[About the data set](#dataset)
-[Code structure](#code)
-[References](#references)
+- [Introduction](#intro)
+- [Usage](#usage)
+- [Reuirements](#requirements)
+- [About the data set](#dataset)
+- [Workflow](#workflow)
+- [Code structure](#code)
+- [References](#references)
 
 <a name="intro"></a>
 ## Introduction
 All the code is written in python. 
+
+*Explain necessity to use Machine Learning.*
+*Proposed solution should include at least three different Machine Learning techniques, whereas one should belong to the area of unsupervised learning and one to the area of supervised learning.*
 
 <a name="usage"></a>
 ## Usage
@@ -24,13 +28,18 @@ More on the different modules in: [Code structure](#code)
 <a name="requirements"></a>
 ## Reuirements
 This are the different libraries that have been used:
+From the standard pytohon libraries:
+```
+multiprocessing
+copy
+```
+Libraries that need to be installed using ```pip install [library_name]```:
 ```
 matplotlib
-multiprocessing
 pandas
+sklearn
 seaborn
 ```
-They can be install using ```pip install [library_name]```
 
 <a name="dataset"></a>
 ## About the data set
@@ -56,10 +65,35 @@ Also if we calculate the correlation matrix there is no significant correlation 
 ![Figure 2. Correlations plot](pictures/101_correlation_matrix.png "Figure 2")
 *Figure 2. Correlations plot*
 
+<a name="workflow"></a>
+## Workflow
 
+### NaN values
+
+NaN value per feature:
+| Feature | NaN values|
+|---|---|
+|ph                  |   491|
+|Hardness            |   0  |
+|Solids              |   0  |
+|Chloramines         |   0  |
+|Sulfate             |   781|
+|Conductivity        |   0  |
+|Organic_carbon      |   0  |
+|Trihalomethanes     |   162|
+|Turbidity           |   0  |
+
+The different NaN values have being filled with the mean of the feature. Other alternatuve would be to interpolate the values but since the is no relation between the features there are no 2 variables to interpolate. Another option would be to eliminate the rows with NaN values but that means getting rid of 491+781+162=1434 values (43%). 
 <a name="code"></a>
 ## Code structure
+- [main.py](main.py)
+     - [data_loading.py](data_loading.py)
+     - [plot_initial_data.py](plot_initial_data.py)
+     - [data_analysis.py](data_analysis.py)
+     - [normalization.py](normalization.py)
+
 
 <a name="references"></a>
 ## References
-
+- [scikit-learn documentation](https://scikit-learn.org)
+- [Feature Selection For Machine Learning in Python](https://machinelearningmastery.com/feature-selection-machine-learning-python/)
