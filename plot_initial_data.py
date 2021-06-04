@@ -1,5 +1,6 @@
 from matplotlib import pyplot as plt
 from time import sleep
+from pandas import DataFrame
 
 
 def histogram(column, tstr):
@@ -16,10 +17,10 @@ def histogram_stack(df):
     j = 0
     for column in df:
         k, l = i // half, j - (j // half)*half
-        axs[k, l].hist(df[column].to_numpy())
+        # DataFrame(df[column]).hist(column, bins=50, ax=axs[k, l])
+        axs[k, l].hist(df[column].to_numpy(), bins=50)
         axs[k, l].set_title(column)
         i += 1
         j += 1
     fig.suptitle('Column histograms')
-    fig.show()
-    sleep(30)
+    plt.show()
