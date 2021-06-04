@@ -1,5 +1,4 @@
 from matplotlib import pyplot as plt
-from time import sleep
 from pandas import DataFrame
 
 

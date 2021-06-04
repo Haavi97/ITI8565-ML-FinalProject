@@ -1,9 +1,38 @@
 # ITI8565-ML-FinalProject
 >Final project for the Machine Learning (ITI8565) course at TalTech
 
+## Index
+[Introduction](#intro)
+[Usage](#usage)
+[Reuirements](#requirements)
+[About the data set](#dataset)
+[Code structure](#code)
+[References](#references)
 
+<a name="intro"></a>
 ## Introduction
+All the code is written in python. 
 
+<a name="usage"></a>
+## Usage
+There is a main file that executes all the analysis:
+```bash
+python main.py
+```
+More on the different modules in: [Code structure](#code)
+
+<a name="requirements"></a>
+## Reuirements
+This are the different libraries that have been used:
+```
+matplotlib
+multiprocessing
+pandas
+seaborn
+```
+They can be install using ```pip install [library_name]```
+
+<a name="dataset"></a>
 ## About the data set
 The file containing the data can be downloaded from the Kaggle web site [water potability](https://www.kaggle.com/adityakadiwal/water-potability).
 It is a csv file containing data about different parameters of the water:
@@ -28,5 +57,9 @@ Also if we calculate the correlation matrix there is no significant correlation 
 *Figure 2. Correlations plot*
 
 
+<a name="code"></a>
+## Code structure
+
+<a name="references"></a>
 ## References
 
