@@ -92,9 +92,13 @@ The different NaN values have being filled with the mean of the feature. Other a
      - [data_analysis.py](data_analysis.py)
      - [normalization.py](normalization.py)
      - [feature_selection.py](feature_selection.py)
+     - [clustering.py](clustering.py)
+Helper function used in several scripts:
+- [plotting.py](plotting.py)
 
 
 <a name="references"></a>
 ## References
 - [scikit-learn documentation](https://scikit-learn.org)
 - [Feature Selection For Machine Learning in Python](https://machinelearningmastery.com/feature-selection-machine-learning-python/)
+- [K-Means Clustering in Python: A Practical Guide](https://realpython.com/k-means-clustering-python/#how-to-perform-k-means-clustering-in-python)

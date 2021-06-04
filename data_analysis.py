@@ -1,6 +1,8 @@
 import seaborn as sn
 from matplotlib import pyplot as plt
 
+from plotting import maximize_screen
+
 
 def correlation_analysis(data):
     corr = data.corr()
@@ -17,6 +19,5 @@ def correlation_analysis(data):
         rotation=45,
         horizontalalignment='right'
     )
-    figManager = plt.get_current_fig_manager()
-    figManager.window.showMaximized()
+    maximize_screen()
     plt.show()

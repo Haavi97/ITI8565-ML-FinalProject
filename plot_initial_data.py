@@ -1,6 +1,8 @@
 from matplotlib import pyplot as plt
 from pandas import DataFrame
 
+from plotting import maximize_screen
+
 
 def histogram(column, tstr):
     plt.hist(column)
@@ -21,7 +23,6 @@ def histogram_stack(df):
         axs[k, l].set_title(column)
         i += 1
         j += 1
-    figManager = plt.get_current_fig_manager()
-    figManager.window.showMaximized()
+    maximize_screen()
     fig.suptitle('Column histograms')
     plt.show()
