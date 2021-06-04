@@ -91,6 +91,7 @@ The different NaN values have being filled with the mean of the feature. Other a
      - [plot_initial_data.py](plot_initial_data.py)
      - [data_analysis.py](data_analysis.py)
      - [normalization.py](normalization.py)
+     - [feature_selection.py](feature_selection.py)
 
 
 <a name="references"></a>

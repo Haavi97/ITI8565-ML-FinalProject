@@ -1,4 +1,5 @@
 import copy
+from sklearn.preprocessing import normalize
 
 def nan(df):
     total_nan = df.isnull().sum().sum()
@@ -12,3 +13,6 @@ def nan(df):
     data = copy.deepcopy(df)
     data = data.fillna(df.mean())
     return data
+
+def normalize_unit(df):
+    return normalize(nan(df))
