@@ -17,5 +17,16 @@ It is a csv file containing data about different parameters of the water:
 8. *Trihalomethanes*: Amount of Trihalomethanes in μg/L.
 9. *Turbidity*: Measure of light emiting property of water in NTU.
 10. *Potability*: Indicates if water is safe for human consumption. Potable -1 and Not potable -0
+
+Seeing the histograms of each feature  (figure 1) we can see they are normally distributed
+
+![Figure 1. Data features histograms](pictures/001_original_data_histograms.png "Figure 1")
+*Figure 1. Data features histograms*
+
+Also if we calculate the correlation matrix there is no significant correlation between any of the features as can be see in figure 2:
+![Figure 2. Correlations plot](pictures/101_correlation_matrix.png "Figure 2")
+*Figure 2. Correlations plot*
+
+
 ## References
 
