@@ -10,6 +10,7 @@ from feature_selection import pca_analysis, selec_best, print_best, select_and_p
 from normalization import nan, normalize_unit
 from clustering import clustering
 from decision_tree import decision_tree, tree_depths
+from nnclassifier import nn_do
 
 if __name__ == '__main__':
     df = load_data()
@@ -41,6 +42,8 @@ if __name__ == '__main__':
             Process(target=tree_depths, args=(X, labels,)).start()
             depth = input('Enter tree depth')
             decision_tree(X, labels, depth=int(depth))
+        if input('Next? nn:') == '1':
+            nn_do(X, labels, nfeatures-1)
     else:
         select_and_print_best(X, labels, tags)
 
