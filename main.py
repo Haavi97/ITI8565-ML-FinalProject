@@ -9,7 +9,7 @@ from data_analysis import correlation_analysis
 from feature_selection import pca_analysis
 from normalization import nan, normalize_unit
 from clustering import clustering
-from decision_tree import decision_tree
+from decision_tree import decision_tree, tree_depths
 
 if __name__ == '__main__':
     df = load_data()
@@ -23,5 +23,6 @@ if __name__ == '__main__':
         Process(target=pca_analysis, args=(data,nfeatures,)).start()
         Process(target=clustering, args=(data,)).start()
     else:
-        decision_tree(data[:,0:(nfeatures-1)], labels)
+        #decision_tree(data[:,0:(nfeatures-1)], labels)
+        tree_depths(data[:,0:(nfeatures-1)], labels)
 
