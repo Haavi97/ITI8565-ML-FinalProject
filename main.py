@@ -1,6 +1,7 @@
 from multiprocessing import Process
 from pandas import DataFrame
 from sys import argv
+from matplotlib import pyplot as plt
 import numpy as np
 
 from data_loading import load_data
@@ -43,7 +44,14 @@ if __name__ == '__main__':
             depth = input('Enter tree depth')
             decision_tree(X, labels, depth=int(depth))
         if input('Next? nn:') == '1':
-            nn_do(X, labels, nfeatures-1)
+            epo = input('How many epochs?')
+            accs, loss_ = nn_do(X, labels, nfeatures-1, epochs=int(epo), lr=0.01)
+            plt.plot(accs, label='Accuracy')
+            plt.plot(loss_, label='Loss')
+            plt.title('Performance per epoch')
+            plt.xlabel('Epochs')
+            plt.legend()
+            plt.show()
     else:
         select_and_print_best(X, labels, tags)
 

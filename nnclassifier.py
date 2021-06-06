@@ -10,9 +10,10 @@ from torch.utils.data import Dataset, DataLoader
 
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import confusion_matrix, classification_report
+from sklearn.metrics import confusion_matrix, classification_report, f1_score
 
 device = 'cpu'
+
 
 class trainData(Dataset):
     def __init__(self, X_data, y_data):
@@ -40,27 +41,25 @@ class testData(Dataset):
 class binaryClassification(nn.Module):
     def __init__(self, input_dim, hidden_dim, dropout=0.1):
         super(binaryClassification, self).__init__()
-        # Number of input features is 12.
         self.layer_1 = nn.Linear(input_dim, hidden_dim)
         self.layer_2 = nn.Linear(hidden_dim, hidden_dim)
         self.layer_out = nn.Linear(hidden_dim, 1)
 
-        self.sig = nn.Sigmoid()
+        self.relu = nn.ReLU()
         self.dropout = nn.Dropout(p=dropout)
         self.batchnorm1 = nn.BatchNorm1d(hidden_dim)
         self.batchnorm2 = nn.BatchNorm1d(hidden_dim)
 
     def forward(self, inputs):
-        x = self.sig(self.layer_1(inputs))
+        x = self.relu(self.layer_1(inputs))
         x = self.batchnorm1(x)
         x = self.dropout(x)
-        x = self.sig(self.layer_2(x))
+        x = self.relu(self.layer_2(x))
         x = self.batchnorm2(x)
         x = self.dropout(x)
         x = self.layer_out(x)
 
         return x
-
 
 def binary_acc(y_pred, y_test):
     y_pred_tag = torch.round(torch.sigmoid(y_pred))
@@ -77,7 +76,8 @@ def train(model, epochs, train_loader, lrr=0.0001):
     criterion = nn.BCEWithLogitsLoss()
     optimizer = optim.Adam(model.parameters(), lr=lrr)
     model.train()
-    result = []
+    result1 = []
+    result2 = []
     for e in range(1, epochs+1):
         epoch_loss = 0
         epoch_acc = 0
@@ -89,6 +89,7 @@ def train(model, epochs, train_loader, lrr=0.0001):
 
             loss = criterion(y_pred, y_batch.unsqueeze(1))
             acc = binary_acc(y_pred, y_batch.unsqueeze(1))
+            #f1 = f1_score(y_pred, y_batch.unsqueeze(1))
 
             loss.backward()
             optimizer.step()
@@ -98,11 +99,12 @@ def train(model, epochs, train_loader, lrr=0.0001):
         acc = epoch_acc/len(train_loader)
         loss_ = epoch_loss/len(train_loader)
 
-        result.append((acc, loss_))
+        result1.append(acc,)
+        result2.append(loss_)
 
         print(
             f'Epoch {e+0:03}: | Loss: {loss_:.5f} | Acc: {acc:.3f}')
-    return result
+    return result1, result2
 
 
 def evaluate(model, test_loader, y_test):
@@ -123,22 +125,23 @@ def evaluate(model, test_loader, y_test):
 
     print(classification_report(y_test, y_pred_list))
 
-def nn_do(X, y, input_dim):
-    X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.33, random_state=69)
 
-    EPOCHS = 50
+def nn_do(X, y, input_dim, epochs=50, lr=0.0001):
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.3, random_state=69)
+
+    EPOCHS = epochs
     BATCH_SIZE = 64
-    LEARNING_RATE = 0.001
+    LEARNING_RATE = lr
 
     train_data = trainData(torch.FloatTensor(X_train),
-                        torch.FloatTensor(y_train))
+                           torch.FloatTensor(y_train))
     test_data = testData(torch.FloatTensor(X_test))
     train_loader = DataLoader(
         dataset=train_data, batch_size=BATCH_SIZE, shuffle=True)
     test_loader = DataLoader(dataset=test_data, batch_size=1)
 
-    model = binaryClassification(input_dim, 64)
+    model = binaryClassification(input_dim, 64, dropout=0.01)
     model.to(device)
     print(model)
     result = train(model, EPOCHS, train_loader, lrr=LEARNING_RATE)
