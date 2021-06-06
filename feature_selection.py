@@ -8,6 +8,7 @@ def pca_analysis(data, nfeatures):
         print('Data is already array-like')
         print(data)
     X = array[:,0:(nfeatures-1)]
+    print(X)
     pca = PCA()
     fit = pca.fit(X)
     print("Explained Variance: %s" % fit.explained_variance_ratio_)

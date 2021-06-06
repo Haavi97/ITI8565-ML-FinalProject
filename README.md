@@ -86,6 +86,8 @@ NaN value per feature:
 The different NaN values have being filled with the mean of the feature. Other alternatuve would be to interpolate the values but since the is no relation between the features there are no 2 variables to interpolate. Another option would be to eliminate the rows with NaN values but that means getting rid of 491+781+162=1434 values (43%). 
 <a name="code"></a>
 ## Code structure
+The code is divide in several scripts that are not meant to be run independently. They contain functions and they are used in the ```main.py``` like a pipeline.
+
 - [main.py](main.py)
      - [data_loading.py](data_loading.py)
      - [plot_initial_data.py](plot_initial_data.py)
