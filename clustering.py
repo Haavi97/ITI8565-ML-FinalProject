@@ -24,14 +24,14 @@ def clustering(scaled_features):
         if k>1:
             score = silhouette_score(scaled_features, kmeans.labels_)
             silhouette_coefficients.append(score)
-    plt.style.use("fivethirtyeight")
+    
     plt.plot(range(1, 11), sse)
     plt.xticks(range(1, 11))
     plt.xlabel("Number of Clusters")
     plt.ylabel("SSE")
     maximize_screen()
     plt.show()
-    plt.style.use("fivethirtyeight")
+    
     plt.plot(range(2, 11), silhouette_coefficients)
     plt.xticks(range(2, 11))
     plt.xlabel("Number of Clusters")
