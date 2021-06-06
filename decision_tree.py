@@ -13,6 +13,7 @@ def decision_tree(X, Y, depth=10, do_plot=True):
     if do_plot:
         tree.plot_tree(clf)
         plt.show()
+    print('Decision tree of max depth {} cross validation report:'.format(depth))
     print(cross_val_score(clf, X, Y))
     y_predicted = clf.predict(X)
     print('Decision tree of max depth {} classification report:'.format(depth))

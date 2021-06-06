@@ -1,6 +1,7 @@
 from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score
 from sklearn.metrics import classification_report
+from sklearn.model_selection import cross_val_score
 import matplotlib.pyplot as plt
 
 from plotting import maximize_screen
@@ -29,3 +30,5 @@ def clustering(scaled_features):
         range(1, 11), sse, curve="convex", direction="decreasing"
     )
     print('Best number of clusters: {}'.format(k1.elbow))
+    print('Kmeans cross validation report:')
+    print(cross_val_score(KMeans(k), scaled_features))

@@ -24,5 +24,6 @@ if __name__ == '__main__':
         Process(target=clustering, args=(data,)).start()
     else:
         #decision_tree(data[:,0:(nfeatures-1)], labels)
-        tree_depths(data[:,0:(nfeatures-1)], labels)
+        # tree_depths(data[:,0:(nfeatures-1)], labels)
+        clustering(data)
 
