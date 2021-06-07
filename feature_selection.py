@@ -43,4 +43,4 @@ def print_best(original, best,  tags):
 def select_and_print_best(X, y, tags, n=3):
     best = selec_best(X, y, n=n)
     print('The {} features that best fit the labels:'.format(n))
-    print_best(X, best, tags)
+    return print_best(X, best, tags)

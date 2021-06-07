@@ -1,6 +1,7 @@
 from multiprocessing import Process
 from pandas import DataFrame
 from sys import argv
+from mpl_toolkits.mplot3d import Axes3D
 from matplotlib import pyplot as plt
 import numpy as np
 
@@ -45,6 +46,19 @@ if __name__ == '__main__':
             result = pca_analysis(data, nfeatures)
             print('Getting results from PCA:')
             print(result)
+            best = select_and_print_best(X, labels, tags)
+            fig = plt.figure()
+            ax = fig.add_subplot(111, projection='3d')
+            best3 = df[best]
+            # for column in best.columns:
+            best3_array = np.array(best3)
+            print(best3_array)
+            color = ['r', 'b']
+            ax.scatter(best3_array[0], best3_array[1], best3_array[2])
+            ax.set_xlabel(best[0])
+            ax.set_ylabel(best[1])
+            ax.set_zlabel(best[2])
+            plt.show()
         if input('Next? Clustering:') == '1':
             Process(target=clustering, args=(data,)).start()
         if input('Next? Tree:') == '1':

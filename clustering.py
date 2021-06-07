@@ -42,3 +42,4 @@ def clustering(scaled_features):
         range(1, 11), sse, curve="convex", direction="decreasing"
     )
     print('Best number of clusters: {}'.format(kl.elbow))
+    print('Maximum silhouette coefficient: {}'.format(max(silhouette_coefficients)))
