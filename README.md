@@ -39,6 +39,7 @@ From the standard pytohon libraries:
 ```
 multiprocessing
 copy
+sys
 ```
 Libraries that need to be installed using ```pip install [library_name]```:
 ```
@@ -46,8 +47,15 @@ matplotlib
 pandas
 sklearn
 seaborn
+pandas
+numpy
+torch
 ```
-
+For installing ```torch``` using pip:
+```bash 
+pip3 install torch==1.8.1+cpu torchvision==0.9.1+cpu torchaudio===0.8.1 -f https://download.pytorch.org/whl/torch_stable.html
+```
+Taken from [https://pytorch.org/get-started/locally/](https://pytorch.org/get-started/locally/)
 <a name="dataset"></a>
 
 ## About the data set
@@ -124,7 +132,12 @@ While the knee method gives us cluster number of *k=3* but with the silhouette c
 ![Figure 6. Tree classifier performance depending on the maximum depth allowed](pictures/303_tree_maximum_depth.png "Figure 6")
 *Figure 6. Tree classifier performance depending on the maximum depth allowed*
 
+<a name="tree"></a>
+
+### Decision tree classifier
+
 <a name="code"></a>
+
 ## Code structure
 The code is divide in several scripts that are not meant to be run independently. They contain functions and they are used in the ```main.py``` like a pipeline.
 
@@ -136,6 +149,7 @@ The code is divide in several scripts that are not meant to be run independently
      - [feature_selection.py](feature_selection.py)
      - [clustering.py](clustering.py)
      - [decision_tree.py](decision_tree.py)
+     - [nnclassifier.py](nnclassifier.py)
 
 Helper function used in several scripts:
 - [plotting.py](plotting.py)

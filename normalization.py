@@ -14,5 +14,12 @@ def nan(df):
     data = data.fillna(df.mean())
     return data
 
+def no_nan(df):
+    return df.dropna()#subset = df.columns, axis=0)
+
 def normalize_unit(df):
     return normalize(nan(df))
+
+def normalize_no_nan(df):
+    return normalize(no_nan(df))
+

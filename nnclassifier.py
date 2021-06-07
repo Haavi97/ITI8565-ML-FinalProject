@@ -119,6 +119,7 @@ def evaluate(model, test_loader, y_test):
             y_pred_list.append(y_pred_tag.cpu().numpy())
 
     y_pred_list = [e.squeeze().tolist() for e in y_pred_list]
+    # y_test = [round(e) for e in y_test]
 
     print('Confusion matrix:')
     print(confusion_matrix(y_test, y_pred_list))
@@ -141,7 +142,7 @@ def nn_do(X, y, input_dim, epochs=50, lr=0.0001):
         dataset=train_data, batch_size=BATCH_SIZE, shuffle=True)
     test_loader = DataLoader(dataset=test_data, batch_size=1)
 
-    model = binaryClassification(input_dim, 64, dropout=0.01)
+    model = binaryClassification(input_dim, 64, dropout=0.2)
     model.to(device)
     print(model)
     result = train(model, EPOCHS, train_loader, lrr=LEARNING_RATE)
