@@ -3,6 +3,7 @@ from pandas import DataFrame
 from sys import argv
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib import pyplot as plt
+from time import sleep
 import numpy as np
 
 from data_loading import load_data
@@ -32,9 +33,23 @@ if __name__ == '__main__':
     if len(argv) == 1:
         print(df.info)
         Process(target=histogram_stack, args=(df,)).start()
+        sleep(3)
         Process(target=correlation_analysis, args=(df,)).start()
-        Process(target=pca_analysis, args=(data, nfeatures,)).start()
+        sleep(3)
+        result = pca_analysis(data, nfeatures)
+        best = select_and_print_best(X, labels, tags)
         Process(target=clustering, args=(data,)).start()
+        sleep(3)
+        Process(target=decision_tree, args=(X, labels, 10,)).start()
+        sleep(10)
+        accs, loss_ = nn_do(X, labels, nfeatures-1,
+                                epochs=300, lr=0.01)
+        plt.plot(accs, label='Accuracy')
+        plt.plot(loss_, label='Loss')
+        plt.title('Performance per epoch')
+        plt.xlabel('Epochs')
+        plt.legend()
+        plt.show()
     elif argv[1] == '-presentation':
         if input('Next?:') == '1':
             print(df.info)
@@ -44,8 +59,6 @@ if __name__ == '__main__':
             Process(target=correlation_analysis, args=(df,)).start()
         if input('Next? PCA:') == '1':
             result = pca_analysis(data, nfeatures)
-            print('Getting results from PCA:')
-            print(result)
             best = select_and_print_best(X, labels, tags)
             fig = plt.figure()
             ax = fig.add_subplot(111, projection='3d')
