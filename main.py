@@ -10,7 +10,7 @@ from data_loading import load_data
 from plot_initial_data import histogram, histogram_stack
 from data_analysis import correlation_analysis
 from feature_selection import pca_analysis, selec_best, print_best, select_and_print_best
-from normalization import nan, no_nan, normalize_unit, normalize_no_nan
+from normalization import nan, no_nan, normalize_unit, normalize_no_nan, normalize_separately
 from clustering import clustering
 from decision_tree import decision_tree, tree_depths
 from nnclassifier import nn_do
@@ -23,11 +23,12 @@ if __name__ == '__main__':
     data = normalize_unit(df) if input_ == '1' else normalize_no_nan(df)
 
     df2 = no_nan(df)
-    
+
     nfeatures = df.shape[1]
     tags = list(df.columns)
-    
-    labels = np.array(df['Potability']) if input_ == '1' else np.array(df2['Potability'])
+
+    labels = np.array(df['Potability']) if input_ == '1' else np.array(
+        df2['Potability'])
     # labels = np.array(data[:,-1])
     X = data[:, 0:(nfeatures-1)]
     if len(argv) == 1:
@@ -43,7 +44,7 @@ if __name__ == '__main__':
         Process(target=decision_tree, args=(X, labels, 10,)).start()
         sleep(10)
         accs, loss_ = nn_do(X, labels, nfeatures-1,
-                                epochs=300, lr=0.01)
+                            epochs=300, lr=0.01)
         plt.plot(accs, label='Accuracy')
         plt.plot(loss_, label='Loss')
         plt.title('Performance per epoch')
@@ -64,13 +65,28 @@ if __name__ == '__main__':
             ax = fig.add_subplot(111, projection='3d')
             best3 = df[best]
             # for column in best.columns:
-            best3_array = np.array(best3)
+            best3_array = best3.values
             print(best3_array)
-            color = ['r', 'b']
+            color_ = ['r', 'b']
             ax.scatter(best3_array[0], best3_array[1], best3_array[2])
             ax.set_xlabel(best[0])
             ax.set_ylabel(best[1])
             ax.set_zlabel(best[2])
+            plt.show()
+            fig2 = plt.figure()
+            ax2 = fig2.add_subplot(111, projection='3d')
+            best3_normalized = normalize_unit(best3)
+            print(best3_normalized)
+            print(best3_normalized[0])
+            print(best3_normalized[i, 0])
+            for i in range(len(best3_normalized)):
+                ax2.scatter(best3_normalized[i, 0],
+                            best3_normalized[i, 1],
+                            best3_normalized[i, 2], 
+                            color=color_[labels[i]])
+            ax2.set_xlabel(best[0])
+            ax2.set_ylabel(best[1])
+            ax2.set_zlabel(best[2])
             plt.show()
         if input('Next? Clustering:') == '1':
             Process(target=clustering, args=(data,)).start()
@@ -88,5 +104,14 @@ if __name__ == '__main__':
             plt.xlabel('Epochs')
             plt.legend()
             plt.show()
+    elif argv[1] == '-best3':
+        print(df.info)
+        print('\n\n******\n\n')
+        Process(target=histogram_stack, args=(df,)).start()
+        print('\n\n******\n\n')
+        Process(target=correlation_analysis, args=(df,)).start()
+        print('\n\n******\n\n')
+        print('\n\n******\n\n')
+        print('\n\n******\n\n')
     else:
         select_and_print_best(X, labels, tags)
