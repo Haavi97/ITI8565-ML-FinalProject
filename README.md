@@ -122,12 +122,12 @@ These three features alone explain 92.71% + 4.12% + 2.26% = 99.08% of the varian
 
 Clustering has been performed using k-means.
 
-![Figure 3. Clustering number decision based on knee method (SSE)](pictures/201_clustering.png "Figure 3")
+![Figure 3. Clustering number decision based on knee method (SSE)](pictures/203_clustering_corrected_normalized.png "Figure 3")
 *Figure 3. Clustering number decision based on knee method (SSE)*
 
 While the knee method gives us cluster number of *k=3* but with the silhouette coefficient calculation is perfectly clear that is still 2. This clustering just confirms the data is good enough to be classified in 2 classes and not more. 
 
-![Figure 4. Clustering number decision based on silhouette coefficients](pictures/201_clustering_silhouette_coefficients.png "Figure 4")
+![Figure 4. Clustering number decision based on silhouette coefficients](pictures/204_clustering_silhouette_coefficients_corrected_normalized.png "Figure 4")
 *Figure 4. Clustering number decision based on silhouette coefficients*
 
 <a name="tree"></a>
@@ -145,8 +145,8 @@ In figure 5 can be observed the decision tree until depth 4 and 8 leaves
 
 Also, it has been analysed how is the performance growing for the growing maximum depth as it can be seen in figure 6.
 
-![Figure 6. Tree classifier performance depending on the maximum depth allowed](pictures/303_tree_maximum_depth.png "Figure 6")
-*Figure 6. Tree classifier performance depending on the maximum depth allowed*
+![Figure 6. Tree classifier performance depending on the maximum depth allowed (depth 4)](pictures/305_tree_4_depth_corrected_normalized.png "Figure 6")
+*Figure 6. Tree classifier performance depending on the maximum depth allowed (depth 4)*
 
 <a name="nn"></a>
 
@@ -160,7 +160,7 @@ For the activation function the linear rectifier unit has been used. With the in
 
 Figure 8 shows the steady growing the model performance during training and posterior evaluation. But as it can be seen it does not grow over 70% accuracy.
 
-![Figure 8. Performance measured in accuracy of the neural network classifier. ](pictures/402_nn_performance.png "Figure 8")
+![Figure 8. Performance measured in accuracy of the neural network classifier. ](pictures/404_nn_performance_corrected_normalized.png "Figure 8")
 *Figure 8. Performance measured in accuracy of the neural network classifier.*
 
 
