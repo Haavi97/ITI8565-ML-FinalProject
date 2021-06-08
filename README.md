@@ -26,7 +26,6 @@ The goal of this project is to find a model that can predict accurately if the w
 
 <a name="usage"></a>
 
-
 ## Usage
 There is a main file that executes all the analysis:
 ```bash
@@ -39,6 +38,7 @@ python main.py -presentation
 More on the different modules in: [Code structure](#code)
 
 <a name="requirements"></a>
+
 ## Reuirements
 This are the different libraries that have been used:
 From the standard python libraries:
