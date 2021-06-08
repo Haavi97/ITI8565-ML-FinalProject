@@ -145,7 +145,7 @@ In figure 5 can be observed the decision tree until depth 4 and 8 leaves
 
 Also, it has been analysed how is the performance growing for the growing maximum depth as it can be seen in figure 6.
 
-![Figure 6. Tree classifier performance depending on the maximum depth allowed (depth 4)](pictures/305_tree_4_depth_corrected_normalized.png "Figure 6")
+![Figure 6. Tree classifier performance depending on the maximum depth allowed (depth 4)](pictures/304_tree_4_depth_corrected_normalized.png "Figure 6")
 *Figure 6. Tree classifier performance depending on the maximum depth allowed (depth 4)*
 
 <a name="nn"></a>
